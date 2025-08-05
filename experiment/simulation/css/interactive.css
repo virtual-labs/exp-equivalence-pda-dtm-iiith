@@ -1,0 +1,288 @@
+/* Interactive Animation Styles for 2-Stack PDA and DTM */
+
+/* Animation for state transitions */
+.state-transition {
+  animation: stateHighlight 0.6s ease-in-out;
+}
+
+@keyframes stateHighlight {
+  0% { background-color: inherit; }
+  50% { background-color: rgba(59, 130, 246, 0.3); }
+  100% { background-color: inherit; }
+}
+
+/* Input consumption animation */
+.input-consumed {
+  animation: inputFade 0.5s ease-out;
+}
+
+@keyframes inputFade {
+  0% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.1);
+  }
+  100% { 
+    opacity: 0.3; 
+    transform: scale(0.9);
+  }
+}
+
+/* Stack operation animations */
+.stack-push-animation {
+  animation: stackPushGlow 0.8s ease-out;
+}
+
+@keyframes stackPushGlow {
+  0% { 
+    box-shadow: 0 0 0 rgba(139, 92, 246, 0.5);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    transform: scale(1.05);
+  }
+  100% { 
+    box-shadow: 0 0 0 rgba(139, 92, 246, 0.5);
+    transform: scale(1);
+  }
+}
+
+.stack-pop-animation {
+  animation: stackPopGlow 0.8s ease-out;
+}
+
+@keyframes stackPopGlow {
+  0% { 
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    transform: scale(1.05);
+  }
+  100% { 
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+    transform: scale(1);
+  }
+}
+
+/* Tape head movement animation */
+.tape-head-moving {
+  animation: headMove 0.5s ease-in-out;
+}
+
+@keyframes headMove {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+/* Tape cell write animation */
+.tape-cell-write {
+  animation: cellWrite 0.6s ease-out;
+}
+
+@keyframes cellWrite {
+  0% { 
+    background-color: white;
+    transform: scale(1);
+  }
+  25% { 
+    background-color: rgba(16, 185, 129, 0.3);
+    transform: scale(1.1);
+  }
+  50% { 
+    background-color: rgba(16, 185, 129, 0.5);
+    transform: scale(1.2);
+  }
+  75% { 
+    background-color: rgba(16, 185, 129, 0.3);
+    transform: scale(1.1);
+  }
+  100% { 
+    background-color: white;
+    transform: scale(1);
+  }
+}
+
+/* Equivalence highlighting */
+.equivalence-highlight {
+  animation: equivalenceGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes equivalenceGlow {
+  0% { 
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  100% { 
+    border-color: rgba(16, 185, 129, 1);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Error state animation */
+.error-state {
+  animation: errorPulse 0.8s ease-in-out;
+}
+
+@keyframes errorPulse {
+  0% { 
+    background-color: inherit;
+    border-color: inherit;
+  }
+  50% { 
+    background-color: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+  }
+  100% { 
+    background-color: inherit;
+    border-color: inherit;
+  }
+}
+
+/* Success state animation */
+.success-state {
+  animation: successPulse 1s ease-in-out;
+}
+
+@keyframes successPulse {
+  0% { 
+    background-color: inherit;
+    border-color: inherit;
+  }
+  50% { 
+    background-color: rgba(16, 185, 129, 0.2);
+    border-color: #10b981;
+  }
+  100% { 
+    background-color: inherit;
+    border-color: inherit;
+  }
+}
+
+/* Loading/processing animation */
+.processing {
+  position: relative;
+  overflow: hidden;
+}
+
+.processing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+  animation: processing 1.5s infinite;
+}
+
+@keyframes processing {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Hover effects for interactive elements */
+.interactive-element {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Button state animations */
+.control-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.control-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.control-btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Synchronized animation class */
+.synchronized-step {
+  animation: synchronizedHighlight 1s ease-in-out;
+}
+
+@keyframes synchronizedHighlight {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* Focus states for accessibility */
+.control-btn:focus,
+select:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Mobile touch feedback */
+@media (max-width: 768px) {
+  .control-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .interactive-element:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Fade in animation for panels */
+.panel {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for theory items */
+.theory-item:nth-child(1) { animation-delay: 0.1s; }
+.theory-item:nth-child(2) { animation-delay: 0.2s; }
+.theory-item:nth-child(3) { animation-delay: 0.3s; }
+
+.theory-item {
+  animation: fadeInUp 0.6s ease-out both;
+}
