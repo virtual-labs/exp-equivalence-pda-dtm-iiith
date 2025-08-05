@@ -1,5 +1,3 @@
-# References
-
 ## Books and Textbooks
 
 1. **Hopcroft, J. E., Motwani, R., & Ullman, J. D.** (2006). *Introduction to Automata Theory, Languages, and Computation* (3rd ed.). Pearson Education.
