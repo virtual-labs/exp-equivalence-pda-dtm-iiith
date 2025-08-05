@@ -1,0 +1,67 @@
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/js/data.js
+  289:33  warning  'hashIndex' is defined but never used                no-unused-vars
+  403:15  warning  'firstAfterHash' is assigned a value but never used  no-unused-vars
+  505:15  warning  'isLast' is assigned a value but never used          no-unused-vars
+  575:26  warning  'chars' is defined but never used                    no-unused-vars
+  575:33  warning  'hashIndex' is defined but never used                no-unused-vars
+  716:31  warning  'chars' is defined but never used                    no-unused-vars
+  716:38  warning  'hashIndex' is defined but never used                no-unused-vars
+  832:38  warning  'module' is not defined                              no-undef
+  833:5   warning  'module' is not defined                              no-undef
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/js/helper.js
+  155:61  warning  'currentIndex' is assigned a value but never used  no-unused-vars
+  317:38  warning  'module' is not defined                            no-undef
+  318:5   warning  'module' is not defined                            no-undef
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/js/interactive.js
+   93:27  warning  'initializeSimulation' is not defined             no-undef
+  127:48  warning  'formatStateName' is not defined                  no-undef
+  135:9   warning  'updateStackDisplay' is not defined               no-undef
+  136:9   warning  'updateStackDisplay' is not defined               no-undef
+  140:48  warning  'formatStateName' is not defined                  no-undef
+  148:9   warning  'updateTapeDisplay' is not defined                no-undef
+  409:21  warning  'animateTapeOperation' is not defined             no-undef
+  418:29  warning  'animateTapeOperation' is not defined             no-undef
+  431:13  warning  'addSynchronizedAnimation' is not defined         no-undef
+  451:26  warning  'machineData' is not defined                      no-undef
+  455:13  warning  'showMachineState' is not defined                 no-undef
+  456:13  warning  'highlightEquivalence' is not defined             no-undef
+  458:13  warning  'showMachineState' is not defined                 no-undef
+  548:15  warning  'bothCorrect' is assigned a value but never used  no-unused-vars
+  585:5   warning  'simulator' is assigned a value but never used    no-unused-vars
+  592:38  warning  'module' is not defined                           no-undef
+  593:5   warning  'module' is not defined                           no-undef
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/js/main.js
+   46:10  warning  'highlightEquivalence' is defined but never used      no-unused-vars
+   61:10  warning  'addSynchronizedAnimation' is defined but never used  no-unused-vars
+   99:10  warning  'animateStackOperation' is defined but never used     no-unused-vars
+  180:10  warning  'animateTapeOperation' is defined but never used      no-unused-vars
+  228:20  warning  'StepByStepSimulation' is not defined                 no-undef
+  261:10  warning  'enableDebugMode' is defined but never used           no-unused-vars
+  266:10  warning  'disableDebugMode' is defined but never used          no-unused-vars
+  271:10  warning  'logSimulationState' is defined but never used        no-unused-vars
+  308:38  warning  'module' is not defined                               no-undef
+  309:5   warning  'module' is not defined                               no-undef
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/js/main_new.js
+   46:10  warning  'highlightEquivalence' is defined but never used      no-unused-vars
+   61:10  warning  'addSynchronizedAnimation' is defined but never used  no-unused-vars
+   99:10  warning  'animateStackOperation' is defined but never used     no-unused-vars
+  164:10  warning  'animateTapeOperation' is defined but never used      no-unused-vars
+  196:20  warning  'StepByStepSimulation' is not defined                 no-undef
+  229:10  warning  'enableDebugMode' is defined but never used           no-unused-vars
+  234:10  warning  'disableDebugMode' is defined but never used          no-unused-vars
+  239:10  warning  'logSimulationState' is defined but never used        no-unused-vars
+  276:38  warning  'module' is not defined                               no-undef
+  277:5   warning  'module' is not defined                               no-undef
+
+/home/runner/work/exp-equivalence-pda-dtm-iiith/exp-equivalence-pda-dtm-iiith/experiment/simulation/mobile_detection.js
+  393:7   warning  'mobileDetection' is assigned a value but never used  no-unused-vars
+  396:38  warning  'module' is not defined                               no-undef
+  397:3   warning  'module' is not defined                               no-undef
+
+✖ 52 problems (0 errors, 52 warnings)
+

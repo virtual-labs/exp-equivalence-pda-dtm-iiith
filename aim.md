@@ -1,0 +1,3 @@
+To examine the computational equivalence between 2-Stack Pushdown Automata and Deterministic Turing Machines. The experiment demonstrates that different memory organization paradigms—hierarchical stack-based storage versus linear tape-based access—can achieve identical computational power.
+
+The focus is on understanding how stack operations can systematically simulate tape movements and how both models recognize the same class of languages. Through parallel execution on pattern recognition tasks, the experiment illustrates the fundamental principle that multiple computational frameworks can express equivalent algorithmic capabilities, establishing the theoretical foundation for Turing-complete computation.

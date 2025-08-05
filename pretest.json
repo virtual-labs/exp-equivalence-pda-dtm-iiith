@@ -1,0 +1,158 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the fundamental difference between a single-stack PDA and a 2-stack PDA in terms of computational power?",
+      "answers": {
+        "a": "Single-stack PDAs are more powerful because they are simpler",
+        "b": "2-stack PDAs achieve Turing-complete computational power while single-stack PDAs recognize only context-free languages",
+        "c": "Both have identical computational power, just different memory organization",
+        "d": "Single-stack PDAs can simulate Turing machines while 2-stack PDAs cannot"
+      },
+      "explanations": {
+        "a": "Incorrect. Simplicity does not imply greater computational power in formal language theory.",
+        "b": "Correct. Single-stack PDAs are limited to recognizing context-free languages, while 2-stack PDAs can simulate Turing machines and thus recognize any recursively enumerable language, achieving Turing-complete computational power.",
+        "c": "Incorrect. The addition of a second stack fundamentally increases the computational power.",
+        "d": "Incorrect. This reverses the actual relationship between these computational models."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In a Deterministic Turing Machine, what are the three operations that occur in each transition?",
+      "answers": {
+        "a": "Read symbol, push to stack, change state",
+        "b": "Read symbol, write symbol, move head",
+        "c": "Write symbol, move head, change state",
+        "d": "Read symbol, write symbol, move head, and change state"
+      },
+      "explanations": {
+        "a": "Incorrect. Turing machines do not use stacks; they use tapes.",
+        "b": "Incorrect. This omits the state transition, which is essential for computation.",
+        "c": "Incorrect. This omits reading the current symbol, which determines what action to take.",
+        "d": "Correct. Each DTM transition involves four components: reading the current tape symbol, writing a new symbol, moving the head (left or right), and transitioning to a new state."
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "For the w#w language recognition problem, what is the primary role of the separator symbol '#'?",
+      "answers": {
+        "a": "It marks the end of the input string",
+        "b": "It serves as a delimiter between two parts that must be identical",
+        "c": "It represents a wildcard that can match any character",
+        "d": "It indicates where the machines should start processing"
+      },
+      "explanations": {
+        "a": "Incorrect. The # symbol appears in the middle of the string, not at the end.",
+        "b": "Correct. The # symbol serves as a delimiter that separates the first part w from the second part w in the pattern w#w. Both machines must verify that the parts before and after # are identical.",
+        "c": "Incorrect. The # symbol has a specific meaning as a separator, not as a wildcard.",
+        "d": "Incorrect. Both machines start processing from the beginning of the string."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How does a 2-stack PDA simulate the tape of a Turing machine?",
+      "answers": {
+        "a": "One stack stores the entire tape contents",
+        "b": "Both stacks store identical copies of the tape",
+        "c": "Left stack represents tape left of head, right stack represents tape at and right of head",
+        "d": "Stacks are used only for temporary storage, not tape simulation"
+      },
+      "explanations": {
+        "a": "Incorrect. A single stack cannot effectively simulate bidirectional tape access.",
+        "b": "Incorrect. Redundant storage would not provide the necessary computational flexibility.",
+        "c": "Correct. The key insight is that the left stack contains tape symbols to the left of the head (with top = leftmost), while the right stack contains symbols at and to the right of the head (with top = current position). Head movement corresponds to transferring elements between stacks.",
+        "d": "Incorrect. The stacks directly simulate the tape structure and operations."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In the DTM approach to w#w recognition, what does the marking strategy accomplish?",
+      "answers": {
+        "a": "It deletes characters that have been processed",
+        "b": "It marks characters for faster access during comparison",
+        "c": "It enables character-by-character verification between the two parts",
+        "d": "It converts the input to a different alphabet"
+      },
+      "explanations": {
+        "a": "Incorrect. Marking preserves the original characters while adding verification information.",
+        "b": "Incorrect. The marking is not primarily for access speed but for verification logic.",
+        "c": "Correct. The DTM marks characters in the first part (before #) and then compares them with corresponding positions in the second part (after #) to verify they match. This systematic marking and comparison strategy ensures accurate w#w pattern recognition.",
+        "d": "Incorrect. Marking augments the alphabet but doesn't convert the entire input."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What happens when a 2-stack PDA processes the '#' symbol in the w#w recognition algorithm?",
+      "answers": {
+        "a": "It immediately accepts the string",
+        "b": "It switches from storing mode to comparison mode",
+        "c": "It empties both stacks to start fresh",
+        "d": "It duplicates the left stack contents to the right stack"
+      },
+      "explanations": {
+        "a": "Incorrect. Processing the # symbol is just a transition point, not an acceptance condition.",
+        "b": "Correct. When the 2-stack PDA encounters the # symbol, it transitions from the first phase (storing characters from the first part w in the left stack) to the second phase (comparing characters from the second part w with the stored contents).",
+        "c": "Incorrect. The stored contents in the left stack are essential for the comparison phase.",
+        "d": "Incorrect. The right stack is used differently in the comparison strategy."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the significance of the equivalence between 2-stack PDAs and Deterministic Turing Machines?",
+      "answers": {
+        "a": "It proves that all computational models are identical",
+        "b": "It shows that multiple memory organizations can achieve universal computation",
+        "c": "It demonstrates that stack-based models are superior to tape-based models",
+        "d": "It establishes that deterministic computation is more powerful than nondeterministic"
+      },
+      "explanations": {
+        "a": "Incorrect. Not all computational models are equivalent; this equivalence is specific to these two models.",
+        "b": "Correct. The equivalence demonstrates that different memory organization strategies (hierarchical stacks vs. linear tape) can achieve the same computational power, specifically Turing-completeness. This fundamental insight shows that there are multiple paths to universal computation.",
+        "c": "Incorrect. Neither model is inherently superior; they are equivalent in computational power.",
+        "d": "Incorrect. This equivalence is about memory organization, not determinism vs. nondeterminism."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Why might the simulation of a DTM by a 2-stack PDA involve computational overhead?",
+      "answers": {
+        "a": "Stack operations are inherently slower than tape operations",
+        "b": "The simulation requires converting between different memory access patterns",
+        "c": "2-stack PDAs cannot directly implement all DTM operations",
+        "d": "The equivalence is only theoretical, not practical"
+      },
+      "explanations": {
+        "a": "Incorrect. The speed of individual operations depends on implementation, not the abstract model.",
+        "b": "Correct. Simulating random tape access using stack operations (which are LIFO) requires careful management of stack contents, potentially involving multiple push/pop operations to access elements not at the top. This conversion between access patterns introduces computational overhead.",
+        "c": "Incorrect. The equivalence theorem guarantees that all DTM operations can be simulated.",
+        "d": "Incorrect. The equivalence is both theoretical and practical, though with potential efficiency differences."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "How does understanding 2-PDA and DTM equivalence inform practical algorithm design?",
+      "answers": {
+        "a": "It suggests that all algorithms should use stack-based implementations",
+        "b": "It proves that tape-based approaches are always more efficient",
+        "c": "It provides insight into choosing appropriate memory models based on problem structure",
+        "d": "It shows that computational model choice has no practical impact"
+      },
+      "explanations": {
+        "a": "Incorrect. The choice of implementation should depend on the specific problem characteristics.",
+        "b": "Incorrect. Efficiency depends on the problem and implementation, not just the abstract model.",
+        "c": "Correct. Understanding the equivalence helps algorithm designers recognize when stack-based approaches might be more natural (e.g., for nested structures) versus when tape-based approaches might be more intuitive (e.g., for linear processing), while knowing both can achieve the same computational results.",
+        "d": "Incorrect. While computationally equivalent, different models can have significant practical performance differences."
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    }
+  ]
+}

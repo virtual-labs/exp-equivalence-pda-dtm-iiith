@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2-Stack PDA ≡ Deterministic Turing Machine - Automata Theory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/interactive.css">
+  <script src="mobile_detection.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Quick Guide Section -->
+    <div class="guide-container">
+      <div class="guide-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 8v4M12 16h.01"></path>
+        </svg>
+        <h2>2-Stack PDA ≡ Deterministic Turing Machine: String Matching w#w</h2>
+      </div>
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="step-number purple">1</div>
+          <div class="step-text">Select a test string of form w#w and observe how both machines process it</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number blue">2</div>
+          <div class="step-text">Choose transitions from 4 options for each step - both PDA and DTM</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number green">3</div>
+          <div class="step-text">Watch how the PDA uses BOTH stacks: left for storage, right for comparison</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number red">4</div>
+          <div class="step-text">Verify both machines reach the same decision for string matching</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="control-panel">
+      <div class="control-group">
+        <label for="test-string-select">Test String:</label>
+        <select id="test-string-select">
+          <option value="ab#ab">ab#ab (matching)</option>
+          <option value="abc#abc">abc#abc (matching)</option>
+          <option value="ab#ba">ab#ba (non-matching)</option>
+          <option value="ab#ac">ab#ac (non-matching)</option>
+          <option value="a#a">a#a (single char)</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <button id="reset-btn" class="control-btn reset">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          Reset
+        </button>
+        <button id="show-hint-btn" class="control-btn secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v4M12 16h.01"></path>
+          </svg>
+          Show Hint
+        </button>
+        <button id="auto-correct-btn" class="control-btn success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Apply Correct
+        </button>
+        <button id="previous-step-btn" class="control-btn orange">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Previous Step
+        </button>
+      </div>
+
+      <div class="status-group">
+        <div class="status-indicator">
+          <span class="status-label">Current Step:</span>
+          <span id="current-step">0</span>
+        </div>
+        <div class="status-indicator">
+          <span class="status-label">Status:</span>
+          <span id="machine-status">Ready</span>
+        </div>
+        <div class="status-indicator">
+          <span class="status-label">Mode:</span>
+          <span id="current-mode">Both Machines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Panels -->
+    <div class="main-panels">
+      <!-- 2-Stack PDA Panel -->
+      <div class="panel pda-panel">
+        <h3 class="panel-title">2-Stack Pushdown Automaton</h3>
+        
+        <div class="pda-container">
+          <!-- PDA State Display -->
+          <div class="pda-state-info">
+            <div class="current-state">
+              <span class="label">Current State:</span>
+              <span id="pda-current-state">q₀</span>
+            </div>
+            <div class="remaining-input">
+              <span class="label">Remaining Input:</span>
+              <span id="pda-remaining-input">abba</span>
+            </div>
+          </div>
+
+          <!-- Two Stacks Visualization -->
+          <div class="stacks-container">
+            <div class="stack-group">
+              <div class="stack-header">
+                <h4>Left Stack</h4>
+                <span class="stack-description">(Stores first part w before #)</span>
+              </div>
+              <div class="stack-visual" id="left-stack">
+                <div class="stack-bottom">⊥</div>
+              </div>
+            </div>
+
+            <div class="stack-group">
+              <div class="stack-header">
+                <h4>Right Stack</h4>
+                <span class="stack-description">(Stores second part w after #)</span>
+              </div>
+              <div class="stack-visual" id="right-stack">
+                <div class="stack-bottom">⊥</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PDA Choice Selection -->
+          <div class="choice-selection-panel">
+            <div class="selection-header">
+              <h4>Select PDA Transition</h4>
+            </div>
+            <div class="choice-container" id="pda-choices">
+              <!-- PDA choices will be populated dynamically -->
+            </div>
+            <div class="pda-feedback" id="pda-feedback">
+              Select a transition to proceed with the PDA simulation.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DTM Panel -->
+      <div class="panel dtm-panel">
+        <h3 class="panel-title">Deterministic Turing Machine</h3>
+        
+        <div class="dtm-container">
+          <!-- DTM State Display -->
+          <div class="dtm-state-info">
+            <div class="current-state">
+              <span class="label">Current State:</span>
+              <span id="dtm-current-state">q₀</span>
+            </div>
+            <div class="head-position">
+              <span class="label">Head Position:</span>
+              <span id="dtm-head-position">0</span>
+            </div>
+          </div>
+<div class="tape-header">
+              <h4>Tape</h4>
+              <span class="tape-description">(X=marked first part, Y=matching pairs, #=separator)</span>
+            </div>
+          <!-- Tape Visualization -->
+          <div class="tape-container" style="display: flex; flex-direction: column; justify-content: center; min-height: 225px;">
+            
+            <div class="tape-visual" id="dtm-tape">
+              <!-- Tape cells will be dynamically generated -->
+            </div>
+            <div class="tape-head" id="tape-head" style="opacity: 0; pointer-events: none; position: absolute; top: -9999px;">
+              <div class="head-indicator">↑</div>
+            </div>
+          </div>
+
+          <!-- Spacer to align with PDA stacks -->
+          <!-- <div style="height: 115px;"></div> -->
+
+          <!-- DTM Choice Selection -->
+          <div class="choice-selection-panel">
+            <div class="selection-header">
+              <h4>Select DTM Transition</h4>
+            </div>
+            <div class="choice-container" id="dtm-choices">
+              <!-- DTM choices will be populated dynamically -->
+            </div>
+            <div class="dtm-feedback" id="dtm-feedback">
+              Select a transition to proceed with the DTM simulation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/helper.js"></script>
+  <script src="js/interactive.js"></script>
+  <script src="js/main.js"></script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
