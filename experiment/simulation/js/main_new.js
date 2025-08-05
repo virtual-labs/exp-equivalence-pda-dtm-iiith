@@ -141,39 +141,23 @@ function updateTapeDisplay(tape, headPosition) {
     
     tapeEl.innerHTML = '';
     
-    // Create tape cells with proper highlighting
+    // Create tape cells
     tape.forEach((symbol, index) => {
         const cellEl = document.createElement('div');
         cellEl.className = 'tape-cell';
         cellEl.textContent = symbol;
         cellEl.setAttribute('data-position', index);
         
-        // Highlight the current head position
         if (index === headPosition) {
-            cellEl.classList.add('current');
-        }
-        
-        // Make blank symbols more visible
-        if (symbol === '⊔') {
-            cellEl.classList.add('blank');
+            cellEl.classList.add('head-position');
         }
         
         tapeEl.appendChild(cellEl);
     });
     
-    // Position the head indicator under the current cell
+    // Update head position indicator
     if (headEl) {
-        // Calculate position based on cell width (42px) + borders/gaps
-        const cellWidth = 42;
-        const leftPosition = headPosition * cellWidth + cellWidth/2;
-        headEl.style.left = `${leftPosition}px`;
-        headEl.style.display = 'block';
-        
-        // Add a pulse animation to make it more visible
-        headEl.classList.add('pulse');
-        setTimeout(() => {
-            headEl.classList.remove('pulse');
-        }, 600);
+        headEl.style.left = `${headPosition * 50}px`; // 50px per cell
     }
 }
 
@@ -184,39 +168,23 @@ function animateTapeOperation(operation, position, symbol = null) {
     if (!tapeEl || !headEl) return;
     
     if (operation === 'move') {
-        // Remove current highlighting from all cells
-        const allCells = tapeEl.querySelectorAll('.tape-cell.current');
-        allCells.forEach(cell => cell.classList.remove('current'));
-        
-        // Add current highlighting to new position
-        const newCell = tapeEl.querySelector(`[data-position="${position}"]`);
-        if (newCell) {
-            newCell.classList.add('current');
-        }
-        
-        // Animate head movement with bounce effect
-        const cellWidth = 42;
-        const leftPosition = position * cellWidth + cellWidth/2;
-        headEl.style.left = `${leftPosition}px`;
+        // Animate head movement
+        headEl.style.left = `${position * 50}px`;
         headEl.classList.add('moving');
         
         setTimeout(() => {
             headEl.classList.remove('moving');
-        }, 500);
+        }, 300);
         
     } else if (operation === 'write' && symbol !== null) {
-        // Animate symbol change with flash effect
+        // Animate symbol change
         const cellEl = tapeEl.querySelector(`[data-position="${position}"]`);
         if (cellEl) {
             cellEl.classList.add('writing');
             
-            // Flash effect
             setTimeout(() => {
                 cellEl.textContent = symbol;
-                cellEl.classList.add('flash');
-                setTimeout(() => {
-                    cellEl.classList.remove('writing', 'flash');
-                }, 200);
+                cellEl.classList.remove('writing');
             }, 150);
         }
     }
